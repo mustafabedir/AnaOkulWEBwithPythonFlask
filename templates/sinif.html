@@ -1,0 +1,76 @@
+{% extends "layout.html" %} {% block body %}
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12 ui-sortable">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i
+                            class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i
+                            class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i
+                            class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i
+                            class="fa fa-times"></i></a>
+                </div>
+                <h4 class="panel-title">Sınıf Tabloları</h4>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div id="data-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 ui-sortable">
+                                
+                            </div>
+                            <div class="col-md-6 col-sm-6 ui-sortable">
+                                <a href="/addsinif" class="btn btn-success">Yeni Sınıf</a>
+                                <br/>
+                                <br/>
+                            </div>
+                        </div>
+                        {% if siniflar %}
+                        <table id="data-table" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="data-table_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 169px;" aria-sort="ascending"
+                                        aria-label="Rendering engine: activate to sort column ascending">Sınıf
+                                        ID</th>
+                                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 248px;" aria-label="Browser: activate to sort column ascending">Sınıf Ad</th>
+                                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 227px;" aria-label="Platform(s): activate to sort column ascending">Mevcut</th>
+                                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 227px;" aria-label="Platform(s): activate to sort column ascending">#</th>
+                                    <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 227px;" aria-label="Platform(s): activate to sort column ascending">#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for sinif in siniflar %}
+                                <tr class="gradeA odd" role="row">
+                                    <td class="sorting_1">{{sinif.sinifid}}</td>
+                                    <td>{{sinif.sinifad}}</td>
+                                    <td>{{sinif.mevcut}}</td>
+                                    <td><a href ="/editsinif/{{sinif.sinifid}}"  class="btn btn-primary">Güncelle</a></td>
+                                    <td><a href="/deletesinif/{{sinif.sinifid}}" class="btn btn-danger">Sil</a></td>
+                                </tr>
+                                {%endfor%}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+</div>
+
+
+
+{% else %}
+<div>
+    Sınıf Bulunmuyor
+</div>
+
+
+{% endif %} {% endblock body %}
